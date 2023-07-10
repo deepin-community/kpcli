@@ -1,0 +1,10 @@
+kpcli (1.6-1) unstable; urgency=low
+
+  Upstream does not provide a release tarball. The release is a single perl
+  script which is simply packaged together with the provided README file into
+  a tarball.  The watch file is not entirely able to cope with that, however
+  basic support is there.
+  To produce a new tarball, use the pristine-tar tarball in the git repository
+  or call the get-orig-source target from debian/rules.
+
+ -- Arno Töll <arno@debian.org>  Tue, 19 Feb 2013 21:20:08 +0100

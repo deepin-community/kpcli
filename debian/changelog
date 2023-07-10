@@ -1,5 +1,95 @@
-template-repository (1.0-1) unstable; urgency=medium
+kpcli (3.8.1-1.1) unstable; urgency=medium
 
-  * Initial release
+  * Non-maintainer upload.
+  * source only upload to enable migration (Closes: #1021674)
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Paul Gevers <elbrus@debian.org>  Wed, 12 Oct 2022 20:33:17 +0200
+
+kpcli (3.8.1-1) unstable; urgency=low
+
+  * New upstream release
+  * Push standards version (no changes needed)
+  * Update copyright years
+  * Set Rules-Requires-Root: no
+
+ -- Rhonda D'Vine <rhonda@debian.org>  Fri, 12 Aug 2022 10:54:01 +0200
+
+kpcli (3.7-1) unstable; urgency=medium
+
+  * New upstream release
+    - Typo fix patch not needed anymore
+
+ -- Rhonda D'Vine <rhonda@debian.org>  Mon, 23 May 2022 11:33:38 +0200
+
+kpcli (3.6-1) unstable; urgency=medium
+
+  * New upstream release
+  * Switch to debhelper-compat 13
+  * Updated Vcs-* URLs for move to salsa, use https for others
+  * Updated Standards version
+  * Add myself to Uploaders
+  * Remove obsolete and unused patch file
+  * Update watch file version
+  * Stop parsing changelog, use pkg-info.mk snippet instead
+  * Create typo fix patch
+
+ -- Rhonda D'Vine <rhonda@debian.org>  Sat, 19 Mar 2022 13:20:36 +0100
+
+kpcli (3.1-3.1) unstable; urgency=medium
+
+  * Non maintainer upload by the Reproducible Builds team.
+  * No source change upload to rebuild on buildd with .buildinfo files.
+
+ -- Holger Levsen <holger@debian.org>  Sat, 02 Jan 2021 02:32:00 +0100
+
+kpcli (3.1-3) unstable; urgency=medium
+
+  * Fix "Perl's rand() is not cryptographically secure. Patch included"
+    Recommend libmath-random-isaac-perl. The upstream version 3.1 includes to
+    optionally use that module when available (Closes: #832935).
+  * Fix "Missing dependencies make enabled functionality non-operative"
+    Add libclipboard-perl to recommends, now that it is available (Closes:
+    #759555).
+
+ -- Arno Töll <arno@debian.org>  Sun, 21 Aug 2016 14:57:45 +0200
+
+kpcli (3.1-2) unstable; urgency=medium
+
+  * New upstream release
+    + On a note, this package supports Math::Random::ISAAC to mitigate the
+      comments of #832935 but this package is not currently available in
+      Debian.
+  * Push standards version (no changes needed)
+  * Change the VCS-Browser URL to use SSL
+
+ -- Arno Töll <arno@debian.org>  Sun, 14 Aug 2016 18:18:20 +0200
+
+kpcli (2.7-1) unstable; urgency=medium
+
+  * New upstream release
+  * Recommend installation of libcapture-tiny-perl and libdata-password-perl.
+    The former is required for clipboard operations (e.g. 'xp' command).
+    However, Clipboard is not available in Debian yet.
+  * Update Standards version: No changes needed
+  * Update VCS links to their canonical locations
+  * Remove perl-modules as an alternative to libterm-readline-gnu-perl.
+    perl-modules no not provide a usable term library anymore.
+
+ -- Arno Töll <arno@debian.org>  Sun, 06 Jul 2014 02:06:37 -1100
+
+kpcli (2.3-1) unstable; urgency=low
+
+  * New upstream release
+  * Drop patches (obsoleted by upstream)
+  * Promote libterm-readline-gnu-perl to depends as kpcli displays an annoying
+    warning otherwise. However, let people use perl-modules too if they want.
+
+ -- Arno Töll <arno@debian.org>  Sun, 07 Jul 2013 18:58:33 +0200
+
+kpcli (1.6-1) unstable; urgency=low
+
+  * Initial release (Closes: #700875).
+    With special thanks to Jakub Wilk, gregor herrmann and Nicolas Dandrimont
+    for their extensive reviews.
+
+ -- Arno Töll <arno@debian.org>  Thu, 21 Feb 2013 00:10:42 +0100

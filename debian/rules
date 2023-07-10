@@ -1,4 +1,44 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+include /usr/share/dpkg/pkg-info.mk
 
 %:
 	dh $@
+
+
+override_dh_install:
+	@echo "Detected upstream package version $(DEB_VERSION_UPSTREAM)"
+	install -m 0755 -T kpcli-$(DEB_VERSION_UPSTREAM).pl debian/kpcli/usr/bin/kpcli
+
+override_dh_installman:
+	pod2man --name KPCLI kpcli-$(DEB_VERSION_UPSTREAM).pl debian/kpcli.1
+	dh_installman
+
+override_dh_installchangelogs:
+	# changelog is in upstream README
+	# README itself is the same as the manpage
+	dh_installchangelogs README
+
+get-orig-source:
+	[ -n "$(DEB_VERSION_UPSTREAM)" ] || exit 1
+	set -e && (									\
+		CURDIR=`pwd` ;								\
+		TEMPDIR=`mktemp -d` ;							\
+		BUILDDIR="build/" ;							\
+		mkdir "$${TEMPDIR}/$${BUILDDIR}" ;					\
+		cd $${TEMPDIR}/$${BUILDDIR} ;						\
+		wget http://qa.debian.org/watch/sf.php/kpcli/README ;			\
+		wget http://qa.debian.org/watch/sf.php/kpcli/kpcli-$(DEB_VERSION_UPSTREAM).pl ;	\
+		echo "Generating kpcli_$(DEB_VERSION_UPSTREAM).orig.tar.gz" ;			\
+		tar zcfv ../kpcli_$(DEB_VERSION_UPSTREAM).orig.tar.gz . ;				\
+		if [ -f "$${CURDIR}/kpcli_$(DEB_VERSION_UPSTREAM).orig.tar.gz" ] ; then		\
+		echo "Not overwriting $(DEB_VERSION_UPSTREAM).orig.tar.gz: already exists in ." ; 	\
+		else									\
+		mv $${TEMPDIR}/kpcli_$(DEB_VERSION_UPSTREAM).orig.tar.gz $${CURDIR} ;		\
+		fi ;									\
+		rm -rf $$TEMPDIR							\
+		)
